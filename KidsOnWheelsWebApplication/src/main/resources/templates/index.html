@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Appointments</title>
+<link th:href="@{/styles/main.css}" rel="stylesheet"/>
+</head>
+
+<body>
+
+<h1>User Management</h1>
+
+<div class="container">
+    <h2>Parents</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="parent : ${parents}">
+                <td th:text="${parent.id}"></td>
+                <td th:text="${parent.userName}"></td>
+                <td th:text="${parent.firstName}"></td>
+                <td th:text="${parent.lastName}"></td>
+                <td th:text="${parent.email}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
