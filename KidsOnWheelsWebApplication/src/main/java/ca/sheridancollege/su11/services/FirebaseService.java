@@ -72,22 +72,7 @@ public class FirebaseService {
         return parents;
     }
 	
-//	public String addParent(Parent parent) throws ExecutionException, InterruptedException {
-//	    Map<String, Object> data = new HashMap<>();
-//	    data.put("userName", parent.getUserName());
-//	    data.put("password", parent.getPassword());
-//	    data.put("firstName", parent.getFirstName());
-//	    data.put("lastName", parent.getLastName());
-//	    data.put("gender", parent.getGender());
-//	    data.put("phone", parent.getPhone());
-//	    data.put("email", parent.getEmail());
-//	    data.put("address", parent.getAddress());
-//
-//	    DocumentReference addedDocRef = firestore.collection("Users").add(data).get();
-//	    return addedDocRef.getId();
-//	}
-	
-	
+
 	
 	
 }

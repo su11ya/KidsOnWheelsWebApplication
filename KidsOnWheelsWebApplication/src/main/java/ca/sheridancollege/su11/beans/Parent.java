@@ -27,7 +27,7 @@ public class Parent {
 	@NonNull
 	private String userName;
 	
-	@NonNull
+	
 	private String password;
 	
 	

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,11 +32,26 @@ public class HomeController {
 	
 
 	
+//	@GetMapping("/")
+//    public String index(Model model) throws ExecutionException, InterruptedException {
+//        List<Parent> parents = firebaseService.getAllParents();
+//        model.addAttribute("parents", parents);
+//        return "index";
+//    }
+	
 	@GetMapping("/")
-    public String index(Model model) throws ExecutionException, InterruptedException {
-        List<Parent> parents = firebaseService.getAllParents();
-        model.addAttribute("parents", parents);
-        return "index";
+	public String index(Model model) throws ExecutionException, InterruptedException {
+	    List<Parent> parents = firebaseService.getAllParents();
+	    model.addAttribute("parents", parents);
+	    model.addAttribute("parent", new Parent()); // Add this line
+	    return "index";
+	}
+
+	
+	@PostMapping("/api/kidsonwheels/parent")
+    public String addParent(@ModelAttribute Parent parent, Model model) {
+        firebaseService.addParent(parent);
+        return "redirect:/";
     }
 	
 	
