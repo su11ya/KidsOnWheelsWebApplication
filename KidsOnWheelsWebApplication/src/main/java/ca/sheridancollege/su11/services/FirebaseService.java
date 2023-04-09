@@ -13,6 +13,7 @@ import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.WriteResult;
 import com.google.cloud.firestore.v1.FirestoreClient;
 import com.google.firebase.FirebaseApp;
 
@@ -92,6 +93,10 @@ public class FirebaseService {
 	    return parent;
 	}
 
-	
+	public void deleteParent(String id) throws ExecutionException, InterruptedException {
+	    DocumentReference documentReference = firestore.collection("users").document(id);
+	    ApiFuture<WriteResult> writeResult = documentReference.delete();
+	    writeResult.get();
+	}
 	
 }

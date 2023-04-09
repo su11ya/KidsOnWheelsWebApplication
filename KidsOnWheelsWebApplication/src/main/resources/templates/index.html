@@ -77,7 +77,13 @@
                 <td th:text="${parent.gender}"></td>
                 <td th:text="${parent.phone}"></td>
                 <td th:text="${parent.email}"></td>
-                <td th:text="${parent.address}"></td><td><a th:href="@{/edit/{id}(id=${parent.id})}" class="btn btn-primary">Edit</a></td>
+                <td th:text="${parent.address}"></td>
+                <td><a th:href="@{/edit/{id}(id=${parent.id})}" class="btn btn-primary">Edit</a></td>
+                <td>
+         		<form th:action="@{/delete/{id}(id=${parent.id})}" method="post" style="display:inline;">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form> 
+            </td>
             </tr>
         </tbody>
     </table>

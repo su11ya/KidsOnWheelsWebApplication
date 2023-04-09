@@ -68,5 +68,12 @@ public class HomeController {
 	    firebaseService.updateParent(parent);
 	    return "redirect:/";
 	}
+	
+	 @PostMapping("/delete/{id}")
+	    public String deleteParent(@PathVariable("id") String id) throws ExecutionException, InterruptedException {
+	        
+		 	firebaseService.deleteParent(id);
+	        return "redirect:/";
+	    }
 
 }
