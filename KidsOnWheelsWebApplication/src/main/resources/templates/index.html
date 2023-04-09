@@ -66,6 +66,7 @@
                 <th>Phone</th>
                 <th>Email</th>
                 <th>Address</th>
+                <th>Children</th>
             </tr>
         </thead>
         <tbody>
@@ -78,6 +79,11 @@
                 <td th:text="${parent.phone}"></td>
                 <td th:text="${parent.email}"></td>
                 <td th:text="${parent.address}"></td>
+                <td>
+                    <a th:href="@{/parent/{parentId}/children(parentId=${parent.id})}">
+                        View Children
+                    </a>
+                </td>
                 <td><a th:href="@{/edit/{id}(id=${parent.id})}" class="btn btn-primary">Edit</a></td>
                 <td>
          		<form th:action="@{/delete/{id}(id=${parent.id})}" method="post" style="display:inline;">
@@ -90,23 +96,5 @@
 
 
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </html>

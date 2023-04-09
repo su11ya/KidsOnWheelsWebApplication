@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ca.sheridancollege.su11.beans.Child;
 import ca.sheridancollege.su11.beans.Parent;
 //import ca.sheridancollege.su11.repositories.ChildRepository;
 //import ca.sheridancollege.su11.repositories.ParentRepository;
@@ -75,5 +76,41 @@ public class HomeController {
 		 	firebaseService.deleteParent(id);
 	        return "redirect:/";
 	    }
+	 
+	 
+//	 @GetMapping("/parent/{parentId}/children")
+//	    public String viewChildren(@PathVariable String parentId, Model model) throws ExecutionException, InterruptedException {
+//	        Parent parent = firebaseService.getParentById(parentId);
+//	        List<Child> children = firebaseService.getChildrenByParentId(parentId);
+//	        model.addAttribute("parent", parent);
+//	        model.addAttribute("children", children);
+//	        model.addAttribute("child", new Child());
+//	        return "view-children";
+//	    }
+//	 
+//	 
+//	 @PostMapping("/parent/{parentId}/addChild")
+//	    public String addChild(@PathVariable String parentId, @ModelAttribute Child child) {
+//	        firebaseService.addChildToParent(parentId, child);
+//	        return "redirect:/parent/" + parentId + "/children";
+//	    }
+//	 
 
+	 @GetMapping("/parent/{parentId}/children")
+	    public String viewChildren(@PathVariable String parentId, Model model) throws ExecutionException, InterruptedException {
+	        Parent parent = firebaseService.getParentById(parentId);
+	        List<Child> children = firebaseService.getChildrenByParentId(parentId);
+	        model.addAttribute("parent", parent);
+	        model.addAttribute("children", children);
+	        model.addAttribute("child", new Child());
+	        return "view-children";
+	    }
+
+	    @PostMapping("/parent/{parentId}/addChild")
+	    public String addChild(@PathVariable String parentId, @ModelAttribute Child child, Model model) {
+	        //child.setParentId(parentId);
+	        child.setId(parentId);
+	        firebaseService.addChild(parentId, child);
+	        return "redirect:/parent/" + parentId + "/children";
+	    }
 }

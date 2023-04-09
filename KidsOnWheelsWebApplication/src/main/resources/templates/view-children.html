@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>View Children</title>
+</head>
+<body>
+
+<h1>Children of <span th:text="${parent.firstName} + ' ' + ${parent.lastName}">Parent Name</span></h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <!-- Add more columns for other Child properties -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="child : ${children}">
+            <td th:text="${child.firstName}"></td>
+            <td th:text="${child.lastName}"></td>
+            <td th:text="${child.age}"></td>
+            <!-- Add more cells for other Child properties -->
+        </tr>
+    </tbody>
+</table>
+
+<h2>Add New Child</h2>
+
+<form th:action="@{/parent/{parentId}/addChild(parentId=${parent.id})}" th:object="${child}" method="post">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" th:field="*{firstName}" required="required" /><br>
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" th:field="*{lastName}" required="required" /><br>
+    <label for="age">Age:</label>
+    <input type="number" id="age" th:field="*{age}" required="required" /><br>
+    <!-- Add more form fields for other Child properties -->
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>
+</body>
+</html>

@@ -2,7 +2,9 @@ package ca.sheridancollege.su11.beans;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -45,9 +47,11 @@ public class Parent {
     private String address;
     
 
-    @OneToMany
-    private List<Child> children;
+//    @OneToMany(mappedBy = "parent")
+//    private List<Child> children;
 
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Child> children;
 
 	
 	

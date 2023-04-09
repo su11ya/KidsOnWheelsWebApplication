@@ -9,14 +9,17 @@ import java.util.concurrent.ExecutionException;
 import org.springframework.stereotype.Service;
 
 import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.Query;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.WriteResult;
 import com.google.cloud.firestore.v1.FirestoreClient;
 import com.google.firebase.FirebaseApp;
 
+import ca.sheridancollege.su11.beans.Child;
 import ca.sheridancollege.su11.beans.Parent;
 
 /**
@@ -98,5 +101,48 @@ public class FirebaseService {
 	    ApiFuture<WriteResult> writeResult = documentReference.delete();
 	    writeResult.get();
 	}
+	
+	
+//	public List<Child> getChildrenByParentId(String parentId) throws ExecutionException, InterruptedException {
+//	    CollectionReference childrenRef = firestore.collection("users").document(parentId).collection("children");
+//	    Query query = childrenRef.orderBy("firstName");
+//	    List<QueryDocumentSnapshot> documents = query.get().get().getDocuments();
+//	    List<Child> children = new ArrayList<>();
+//	    for (QueryDocumentSnapshot document : documents) {
+//	        Child child = document.toObject(Child.class);
+//	        child.setId(document.getId());
+//	        children.add(child);
+//	    }
+//	    return children;
+//	}
+//
+//	public void addChildToParent(String parentId, Child child) {
+//	    DocumentReference parentRef = firestore.collection("users").document(parentId);
+//	    CollectionReference childrenRef = parentRef.collection("children");
+//	    DocumentReference newChildRef = childrenRef.document();
+//	    child.setId(newChildRef.getId());
+//	    newChildRef.set(child);
+//	}
+
+	 public Child addChild(String parentId, Child child) {
+	        DocumentReference documentReference = firestore.collection("users").document(parentId).collection("children").document();
+	        child.setId(documentReference.getId());
+	        documentReference.set(child);
+	        return child;
+	    }
+
+	    public List<Child> getChildrenByParentId(String parentId) throws ExecutionException, InterruptedException {
+	        List<QueryDocumentSnapshot> documents = firestore.collection("users").document(parentId).collection("children").get().get().getDocuments();
+	        List<Child> children = new ArrayList<>();
+	        for (QueryDocumentSnapshot document : documents) {
+	            Child child = document.toObject(Child.class);
+	            child.setId(document.getId());
+	            children.add(child);
+	        }
+	        return children;
+	    }
+	
+	
+	
 	
 }

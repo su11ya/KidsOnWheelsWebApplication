@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,18 +22,20 @@ import lombok.RequiredArgsConstructor;
 public class Child {
 	@Id
 	//@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String childId;
+	private String id;
 	
 	@NonNull
 	private String firstName;
 	
-	@NonNull
+	
     private String lastName;
 	
     private String gender;
-    private String dateOfBirth;
-
+    private int age;
+    
     @ManyToOne
+    @JoinColumn(name = "parent_id")
     private Parent parent;
+
 
 }
