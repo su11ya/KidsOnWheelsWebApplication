@@ -141,6 +141,25 @@ public class FirebaseService {
 	        }
 	        return children;
 	    }
+	    
+	    
+	    public Parent getParentByPhoneNumber(Long phone) throws ExecutionException, InterruptedException {
+	    	 System.out.println("Searching for phone number: " + phone);
+	    	List<QueryDocumentSnapshot> documents = firestore.collection("users")
+	                .whereEqualTo("phone", phone)
+	                .get()
+	                .get()
+	                .getDocuments();
+	        
+	        System.out.println("Number of documents found: " + documents.size());
+	        
+	        if (documents.size() == 1) {
+	            Parent parent = documents.get(0).toObject(Parent.class);
+	            parent.setId(documents.get(0).getId());
+	            return parent;
+	        }
+	        return null;
+	    }
 	
 	
 	

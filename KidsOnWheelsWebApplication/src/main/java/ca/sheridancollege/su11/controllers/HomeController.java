@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.sheridancollege.su11.beans.Child;
@@ -113,4 +114,30 @@ public class HomeController {
 	        firebaseService.addChild(parentId, child);
 	        return "redirect:/parent/" + parentId + "/children";
 	    }
+	    
+	    
+	    
+	    @PostMapping("/search")
+	    public String searchParentByPhoneNumber(@RequestParam("phoneNumber") Long phoneNumber, Model model) throws ExecutionException, InterruptedException {
+	        Parent parent = firebaseService.getParentByPhoneNumber(phoneNumber);
+	        if (parent != null) {
+	            model.addAttribute("searchedParent", parent);
+	        } else {
+	            model.addAttribute("searchError", "No parent found with the provided phone number.");
+	        }
+	        return index(model);
+	    }
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
 }

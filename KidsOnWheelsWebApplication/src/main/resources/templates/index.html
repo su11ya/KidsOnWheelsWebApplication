@@ -48,6 +48,25 @@
     
     <div>
     <h2>Search Parent</h2>
+    <form th:action="@{/search}" method="post">
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="tel" id="phoneNumber" name="phoneNumber" required="required" />
+    <button type="submit" class="btn btn-primary">Search</button>
+	</form>
+
+	<div th:if="${searchedParent != null}">
+    <h2>Search Result:</h2>
+    <p>
+        Name: <span th:text="${searchedParent.firstName} + ' ' + ${searchedParent.lastName}"></span><br>
+        Phone: <span th:text="${searchedParent.phone}"></span><br>
+        Email: <span th:text="${searchedParent.email}"></span>
+    </p>
+	</div>
+
+<div th:if="${searchError != null}">
+    <h2>Error:</h2>
+    <p th:text="${searchError}"></p>
+</div>
     
     </div>
 
