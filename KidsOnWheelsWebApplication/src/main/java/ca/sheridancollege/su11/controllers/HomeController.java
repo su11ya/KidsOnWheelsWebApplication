@@ -99,6 +99,29 @@ public class HomeController {
 	    }
 	    
 	    
+	    @GetMapping("/parent/{parentId}/children/edit/{childId}")
+	    public String editChild(@PathVariable String parentId, @PathVariable String childId, Model model) throws ExecutionException, InterruptedException {
+	        Child child = firebaseService.getChildById(parentId, childId);
+	        model.addAttribute("child", child);
+	        return "edit-child";
+	    }
+
+	    @PostMapping("/parent/{parentId}/children/edit/{childId}")
+	    public String updateChild(@PathVariable String parentId, @PathVariable String childId, @ModelAttribute Child updatedChild) throws ExecutionException, InterruptedException {
+	        firebaseService.updateChild(parentId, childId, updatedChild);
+	        return "redirect:/parent/{parentId}/children";
+	    }
+
+
+
+	    
+	    @PostMapping("/parent/{parentId}/children/delete/{childId}")
+	    public String deleteChild(@PathVariable String parentId, @PathVariable String childId) throws ExecutionException, InterruptedException {
+	        firebaseService.deleteChild(parentId, childId);
+	        return "redirect:/parent/{parentId}/children";
+	    }
+	    
+	    
 	    //display search result
 //	    @PostMapping("/search")
 //	    public String searchParentByPhoneNumber(@RequestParam("phoneNumber") Long phoneNumber, Model model) throws ExecutionException, InterruptedException {
@@ -111,7 +134,7 @@ public class HomeController {
 //	        return index(model);
 //	    }
 //	    
-	    
+	    //navigate to edit-parent.html
 	    @PostMapping("/search")
 	    public String searchParentByPhoneNumber(@RequestParam("phone") Long phone, Model model) throws ExecutionException, InterruptedException {
 	        Parent parent = firebaseService.getParentByPhoneNumber(phone);
@@ -122,6 +145,7 @@ public class HomeController {
 	            return "index";
 	        }
 	    }
+	    
 
 	    
 	    

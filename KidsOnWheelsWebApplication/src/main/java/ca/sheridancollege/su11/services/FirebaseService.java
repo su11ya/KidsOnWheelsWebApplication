@@ -130,7 +130,31 @@ public class FirebaseService {
 	        documentReference.set(child);
 	        return child;
 	    }
+	 
+	 
+	 public Child updateChild(String parentId, String childId, Child updatedChild) {
+		    DocumentReference documentReference = firestore.collection("users").document(parentId).collection("children").document(childId);
+		    documentReference.set(updatedChild);
+		    return updatedChild;
+		}
 
+	    public void deleteChild(String parentId, String childId) {
+	        DocumentReference documentReference = firestore.collection("users").document(parentId).collection("children").document(childId);
+	        documentReference.delete();
+	    }
+
+	    public Child getChildById(String parentId, String childId) throws ExecutionException, InterruptedException {
+	        DocumentReference documentReference = firestore.collection("users").document(parentId).collection("children").document(childId);
+	        ApiFuture<DocumentSnapshot> future = documentReference.get();
+	        DocumentSnapshot document = future.get();
+	        if (document.exists()) {
+	            return document.toObject(Child.class);
+	        } else {
+	            return null;
+	        }
+	    }
+
+	    
 	    public List<Child> getChildrenByParentId(String parentId) throws ExecutionException, InterruptedException {
 	        List<QueryDocumentSnapshot> documents = firestore.collection("users").document(parentId).collection("children").get().get().getDocuments();
 	        List<Child> children = new ArrayList<>();
@@ -161,6 +185,7 @@ public class FirebaseService {
 	        return null;
 	    }
 	
+	    
 	
 	
 	

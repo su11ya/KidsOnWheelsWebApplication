@@ -42,7 +42,7 @@
        
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
-    <a th:href="@{/parent/{parentId}/children(parentId=${parent.id})}" class="btn btn-secondary">View Children</a>
+    <a href="/parent/${parent.id}/children" class="btn btn-secondary">View Children</a>
     <a href="/" class="btn btn-secondary">Back to Home Page</a>
 </div>
 
