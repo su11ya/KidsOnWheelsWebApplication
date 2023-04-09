@@ -99,20 +99,30 @@ public class HomeController {
 	    }
 	    
 	    
+	    //display search result
+//	    @PostMapping("/search")
+//	    public String searchParentByPhoneNumber(@RequestParam("phoneNumber") Long phoneNumber, Model model) throws ExecutionException, InterruptedException {
+//	        Parent parent = firebaseService.getParentByPhoneNumber(phoneNumber);
+//	        if (parent != null) {
+//	            model.addAttribute("searchedParent", parent);
+//	        } else {
+//	            model.addAttribute("searchError", "No parent found with the provided phone number.");
+//	        }
+//	        return index(model);
+//	    }
+//	    
 	    
 	    @PostMapping("/search")
-	    public String searchParentByPhoneNumber(@RequestParam("phoneNumber") Long phoneNumber, Model model) throws ExecutionException, InterruptedException {
-	        Parent parent = firebaseService.getParentByPhoneNumber(phoneNumber);
+	    public String searchParentByPhoneNumber(@RequestParam("phone") Long phone, Model model) throws ExecutionException, InterruptedException {
+	        Parent parent = firebaseService.getParentByPhoneNumber(phone);
 	        if (parent != null) {
-	            model.addAttribute("searchedParent", parent);
+	            return "redirect:/edit/" + parent.getId();
 	        } else {
 	            model.addAttribute("searchError", "No parent found with the provided phone number.");
+	            return "index";
 	        }
-	        return index(model);
 	    }
-	    
-	    
-	    
+
 	    
 	    
 	    

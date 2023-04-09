@@ -75,6 +75,19 @@
             </div>
     </div>
     
+    
+    <div class="row mt-4">
+  <div class="col-md-12">
+    <form th:action="@{/search}" method="post">
+      <div class="form-group">
+        <label for="phone">Search by Phone:</label>
+        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter phone number" />
+      </div>
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+  </div>
+</div>
+    
 	
     <div class="row mt-4">
         <div class="col-md-12">
