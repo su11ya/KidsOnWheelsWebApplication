@@ -18,37 +18,22 @@ import lombok.RequiredArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Entity
 public class Parent {
 	
 	@Id
 	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String id;
-	
-	@NonNull
 	private String userName;
-	
-	
 	private String password;
-	
-	
-	
 	private String firstName;
-	
-	
 	private String lastName;
-	
 	private String gender;
     private Long phone;
     private String email;
-   
-    
     private String address;
     
 
-//    @OneToMany(mappedBy = "parent")
-//    private List<Child> children;
 
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Child> children;

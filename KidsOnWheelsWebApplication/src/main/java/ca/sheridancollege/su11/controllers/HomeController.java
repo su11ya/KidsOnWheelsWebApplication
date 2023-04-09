@@ -78,25 +78,8 @@ public class HomeController {
 	        return "redirect:/";
 	    }
 	 
-	 
-//	 @GetMapping("/parent/{parentId}/children")
-//	    public String viewChildren(@PathVariable String parentId, Model model) throws ExecutionException, InterruptedException {
-//	        Parent parent = firebaseService.getParentById(parentId);
-//	        List<Child> children = firebaseService.getChildrenByParentId(parentId);
-//	        model.addAttribute("parent", parent);
-//	        model.addAttribute("children", children);
-//	        model.addAttribute("child", new Child());
-//	        return "view-children";
-//	    }
-//	 
-//	 
-//	 @PostMapping("/parent/{parentId}/addChild")
-//	    public String addChild(@PathVariable String parentId, @ModelAttribute Child child) {
-//	        firebaseService.addChildToParent(parentId, child);
-//	        return "redirect:/parent/" + parentId + "/children";
-//	    }
-//	 
 
+	 
 	 @GetMapping("/parent/{parentId}/children")
 	    public String viewChildren(@PathVariable String parentId, Model model) throws ExecutionException, InterruptedException {
 	        Parent parent = firebaseService.getParentById(parentId);

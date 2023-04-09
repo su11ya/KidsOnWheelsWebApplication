@@ -37,5 +37,4 @@ public class Child {
     @JoinColumn(name = "parent_id")
     private Parent parent;
 
-
 }
