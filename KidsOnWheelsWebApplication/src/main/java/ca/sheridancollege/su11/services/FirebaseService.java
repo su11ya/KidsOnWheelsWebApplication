@@ -8,7 +8,9 @@ import java.util.concurrent.ExecutionException;
 
 import org.springframework.stereotype.Service;
 
+import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.v1.FirestoreClient;
@@ -72,6 +74,23 @@ public class FirebaseService {
         return parents;
     }
 	
+	
+	public Parent getParentById(String id) throws ExecutionException, InterruptedException {
+	    DocumentReference documentReference = firestore.collection("users").document(id);
+	    ApiFuture<DocumentSnapshot> future = documentReference.get();
+	    DocumentSnapshot document = future.get();
+	    if (document.exists()) {
+	        return document.toObject(Parent.class);
+	    } else {
+	        return null;
+	    }
+	}
+
+	public Parent updateParent(Parent parent) {
+	    DocumentReference documentReference = firestore.collection("users").document(parent.getId());
+	    documentReference.set(parent);
+	    return parent;
+	}
 
 	
 	

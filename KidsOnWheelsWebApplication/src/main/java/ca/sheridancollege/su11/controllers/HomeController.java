@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,5 +56,17 @@ public class HomeController {
     }
 	
 	
+	@GetMapping("/edit/{id}")
+	public String editParent(@PathVariable String id, Model model) throws ExecutionException, InterruptedException {
+	    Parent parent = firebaseService.getParentById(id);
+	    model.addAttribute("parent", parent);
+	    return "edit-parent";
+	}
+	
+	@PostMapping("/edit")
+	public String updateParent(@ModelAttribute Parent parent) {
+	    firebaseService.updateParent(parent);
+	    return "redirect:/";
+	}
 
 }

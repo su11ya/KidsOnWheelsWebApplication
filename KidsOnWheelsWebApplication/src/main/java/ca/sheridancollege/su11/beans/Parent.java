@@ -31,10 +31,10 @@ public class Parent {
 	private String password;
 	
 	
-	@NonNull
+	
 	private String firstName;
 	
-	@NonNull
+	
 	private String lastName;
 	
 	private String gender;
