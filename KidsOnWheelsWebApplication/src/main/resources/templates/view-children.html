@@ -14,31 +14,21 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Age</th>
-            <!-- Add more columns for other Child properties -->
         </tr>
     </thead>
     <tbody>
-        <!-- <tr th:each="child : ${children}">
-            <td th:text="${child.firstName}"></td>
-            <td th:text="${child.lastName}"></td>
-            <td th:text="${child.age}"></td>
-            Add more cells for other Child properties
-        </tr> -->
         
-        <tr th:each="child : ${children}">
-    <td th:text="${child.firstName}"></td>
-    <td th:text="${child.lastName}"></td>
-    <td th:text="${child.age}"></td>
-    <!-- Add more cells for other Child properties -->
-    <td>
-        <a th:href="@{/parent/{parentId}/children/edit/{childId}(parentId=${parent.id}, childId=${child.id})}" class="btn btn-secondary">Edit</a>
-    </td>
-    <td>
-        <form th:action="@{/parent/{parentId}/children/delete/{childId}(parentId=${parent.id}, childId=${child.id})}" method="post">
-            <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
-    </td>
-</tr>
+        
+ 		<tr th:each="child : ${children}">
+    		<td th:text="${child.firstName}"></td>
+    		<td th:text="${child.lastName}"></td>
+    		<td th:text="${child.age}"></td>
+    		<td>
+        		<form th:action="@{/parent/{parentId}/children/delete/{childId}(parentId=${parent.id}, childId=${child.id})}" method="post">
+            	<button type="submit" class="btn btn-danger">Delete</button>
+        		</form>
+    	</td>
+		</tr>
         
     </tbody>
 </table>

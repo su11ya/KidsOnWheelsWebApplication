@@ -131,12 +131,6 @@ public class FirebaseService {
 	        return child;
 	    }
 	 
-	 
-	 public Child updateChild(String parentId, String childId, Child updatedChild) {
-		    DocumentReference documentReference = firestore.collection("users").document(parentId).collection("children").document(childId);
-		    documentReference.set(updatedChild);
-		    return updatedChild;
-		}
 
 	    public void deleteChild(String parentId, String childId) {
 	        DocumentReference documentReference = firestore.collection("users").document(parentId).collection("children").document(childId);

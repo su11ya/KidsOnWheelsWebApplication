@@ -99,22 +99,6 @@ public class HomeController {
 	    }
 	    
 	    
-	    @GetMapping("/parent/{parentId}/children/edit/{childId}")
-	    public String editChild(@PathVariable String parentId, @PathVariable String childId, Model model) throws ExecutionException, InterruptedException {
-	        Child child = firebaseService.getChildById(parentId, childId);
-	        model.addAttribute("child", child);
-	        return "edit-child";
-	    }
-
-	    @PostMapping("/parent/{parentId}/children/edit/{childId}")
-	    public String updateChild(@PathVariable String parentId, @PathVariable String childId, @ModelAttribute Child updatedChild) throws ExecutionException, InterruptedException {
-	        firebaseService.updateChild(parentId, childId, updatedChild);
-	        return "redirect:/parent/{parentId}/children";
-	    }
-
-
-
-	    
 	    @PostMapping("/parent/{parentId}/children/delete/{childId}")
 	    public String deleteChild(@PathVariable String parentId, @PathVariable String childId) throws ExecutionException, InterruptedException {
 	        firebaseService.deleteChild(parentId, childId);
