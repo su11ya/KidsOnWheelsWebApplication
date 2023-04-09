@@ -59,7 +59,16 @@
     <p>
         Name: <span th:text="${searchedParent.firstName} + ' ' + ${searchedParent.lastName}"></span><br>
         Phone: <span th:text="${searchedParent.phone}"></span><br>
-        Email: <span th:text="${searchedParent.email}"></span>
+        Email: <span th:text="${searchedParent.email}"></span><br>
+<!--         <form th:action="@{/edit/{id}(id=${searchedParent.id})}" method="get">
+    <input type="hidden" th:name="id" th:value="${searchedParent.id}" />
+    <button type="submit" class="btn btn-primary">Edit</button>
+</form>
+<form th:action="@{/delete/{id}(id=${searchedParent.id})}" method="post">
+    <input type="hidden" th:name="id" th:value="${searchedParent.id}" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form> -->
+
     </p>
 	</div>
 
