@@ -39,6 +39,7 @@
     <!-- Add more form fields for other Child properties -->
     <button type="submit" class="btn btn-primary">Add</button>
 </form>
+<a href="/edit/{parentId}" class="btn btn-secondary" th:href="@{/edit/{parentId}(parentId=${parent.id})}">Back to Parent Details</a>
 <a href="/" class="btn btn-secondary">Back to Home Page</a>
 </body>
 </html>
